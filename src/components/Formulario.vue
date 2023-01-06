@@ -15,6 +15,7 @@
 
 import { defineComponent } from 'vue';
 import  Temporizador  from './Temporizador.vue'
+
  
 export default defineComponent({
     name: "formulario-completo",
@@ -23,8 +24,10 @@ export default defineComponent({
     },
     methods:{
         finalizarTarefa (tempoDecorrido: number) :void{
-            console.log('tempo da tarefa', tempoDecorrido)
-            console.log('descrição da tarefa', this.descricao)
+            this.$emit('aoSalvarTarefa',{
+                duracaoEmSegundos: tempoDecorrido,
+                descricaoDaTarefa: this.descricao
+            })
             this.descricao = ''
         }
     },
@@ -32,6 +35,6 @@ export default defineComponent({
         return{
             descricao: ''
         }
-    }
+    },
 })
 </script>
